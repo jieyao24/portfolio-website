@@ -75,8 +75,9 @@ export default function About() {
               Outstanding Student.
             </p>
             <p>
-              My core stack includes Python, PyTorch, Spark, AWS (EC2, S3, CDK, SageMaker), Docker,
-              Kubernetes, and TypeScript.
+              My core stack includes Python, Java, PyTorch, Spark, AWS (EC2, S3, CDK, SageMaker), Docker,
+              Kubernetes, and TypeScript. Outside of engineering, I&apos;m an athlete — football and the
+              gym keep me sharp, and the discipline carries over into everything I build.
             </p>
           </div>
         </div>

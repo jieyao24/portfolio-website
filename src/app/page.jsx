@@ -6,6 +6,10 @@ import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
+import logoAmazon from '@/images/logos/amazon-icon.svg'
+import logoQuanView from '@/images/logos/quan-view-icon.png'
+import logoUW from '@/images/logos/uw-logo.png'
+import logoXJTU from '@/images/logos/xjtu-logo.png'
 
 function MailIcon(props) {
   return (
@@ -47,25 +51,6 @@ function BriefcaseIcon(props) {
       />
       <path
         d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function AcademicCapIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.63 48.63 0 0 1 12 20.904a48.63 48.63 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.034 51.034 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
@@ -138,9 +123,6 @@ function NextjsIcon() {
 function Article({ article }) {
   return (
     <Card as="article">
-      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <NextjsIcon />
-      </div>
       <Card.Title href={article.link?.href}>
         {article.name}
       </Card.Title>
@@ -201,7 +183,7 @@ function Role({ role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-white dark:ring-0">
         {role.logo ? (
           <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
         ) : (
@@ -231,19 +213,38 @@ function Role({ role }) {
   )
 }
 
+function AcademicCapIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.63 48.63 0 0 1 12 20.904a48.63 48.63 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
+        className="stroke-zinc-400 dark:stroke-zinc-500"
+      />
+    </svg>
+  )
+}
+
 function Resume() {
   let resume = [
     {
       company: 'Amazon',
       title: 'Software Engineer Intern',
-      logoText: 'AMZ',
+      logo: logoAmazon,
       start: 'Jun 2025',
       end: 'Sep 2025',
     },
     {
       company: 'QuanView Technology',
       title: 'Machine Learning Engineer Intern',
-      logoText: 'QV',
+      logo: logoQuanView,
       start: 'Jun 2023',
       end: 'Aug 2024',
     },
@@ -256,77 +257,47 @@ function Resume() {
     },
   ]
 
-  return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Experience</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
-        ))}
-      </ol>
-    </div>
-  )
-}
-
-function Education() {
   let education = [
     {
-      school: 'University of Washington',
-      degree: 'M.S. Electrical & Computer Engineering · GPA 3.9/4.0',
-      logoText: 'UW',
+      company: 'University of Washington',
+      title: 'M.S. Electrical & Computer Engineering · GPA 3.9/4.0',
+      logo: logoUW,
       start: 'Sep 2024',
-      end: { label: 'Jun 2026 (Expected)', dateTime: '2026-06' },
+      end: 'Jun 2026',
     },
     {
-      school: "Xi'an Jiaotong University",
-      degree: 'B.S. Computer Science · Outstanding Student',
-      logoText: 'XJTU',
+      company: "Xi'an Jiaotong University",
+      title: 'B.S. Computer Science',
+      logo: logoXJTU,
       start: 'Sep 2017',
       end: 'Jul 2021',
     },
   ]
 
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <AcademicCapIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Education</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {education.map((entry, index) => {
-          let startLabel = typeof entry.start === 'string' ? entry.start : entry.start.label
-          let startDate = typeof entry.start === 'string' ? entry.start : entry.start.dateTime
-          let endLabel = typeof entry.end === 'string' ? entry.end : entry.end.label
-          let endDate = typeof entry.end === 'string' ? entry.end : entry.end.dateTime
-          return (
-            <li key={index} className="flex gap-4">
-              <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                <span className="text-xs font-bold text-zinc-600 dark:text-zinc-300">{entry.logoText}</span>
-              </div>
-              <dl className="flex flex-auto flex-wrap gap-x-2">
-                <dt className="sr-only">School</dt>
-                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  {entry.school}
-                </dd>
-                <dt className="sr-only">Degree</dt>
-                <dd className="text-xs text-zinc-500 dark:text-zinc-400">{entry.degree}</dd>
-                <dt className="sr-only">Date</dt>
-                <dd
-                  className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                  aria-label={`${startLabel} until ${endLabel}`}
-                >
-                  <time dateTime={startDate}>{startLabel}</time>{' '}
-                  <span aria-hidden="true">—</span>{' '}
-                  <time dateTime={endDate}>{endLabel}</time>
-                </dd>
-              </dl>
-            </li>
-          )
-        })}
-      </ol>
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+        <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+          <BriefcaseIcon className="h-6 w-6 flex-none" />
+          <span className="ml-3">Experience</span>
+        </h2>
+        <ol className="mt-6 space-y-4">
+          {resume.map((role, roleIndex) => (
+            <Role key={roleIndex} role={role} />
+          ))}
+        </ol>
+      </div>
+      <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+        <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+          <AcademicCapIcon className="h-6 w-6 flex-none" />
+          <span className="ml-3">Education</span>
+        </h2>
+        <ol className="mt-6 space-y-4">
+          {education.map((role, roleIndex) => (
+            <Role key={roleIndex} role={role} />
+          ))}
+        </ol>
+      </div>
     </div>
   )
 }
@@ -356,13 +327,15 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software Engineer & ML Systems Builder
+            &lt;Developer /&gt;, Athlete 🏈
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I&apos;m Jie, a software engineer based in Seattle pursuing my M.S. in ECE at the University of
-            Washington. I build ML data infrastructure and distributed systems — from ETL pipelines
+            Washington. I build ML data workflows and distributed systems, from ETL pipelines
             processing millions of daily events to fine-tuning large language models. Previously at
-            Amazon, QuanView Technology, and Deep Data Investment.
+            Amazon, QuanView Technology, and Deep Data Investment. Off the clock, you&apos;ll find me on
+            the football field and at the gym — I believe the same discipline that wins games drives
+            great engineering.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -394,7 +367,6 @@ export default async function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
-            <Education />
           </div>
         </div>
       </Container>

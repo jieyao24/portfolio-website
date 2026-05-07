@@ -6,7 +6,7 @@ const projects = [
     name: 'Supervised Fine-Tuning Llama-style 7B Model with LoRA',
     description:
       'End-to-end SFT pipeline for a 7B LLM using LoRA adapters, trained on UW Hyak HPC under Slurm. Built Alpaca-style data preprocessing with anomaly filtering, prompt templating, and dataset distribution analysis. Synthesized domain-specific instruction-response pairs via GPT. Deployed to an interactive inference evaluation interface.',
-    link: { href: 'https://github.com/jieyao24', label: 'github.com/jieyao24' },
+    link: { href: 'https://github.com/jieyao24/alpaca-lora', label: 'alpaca-lora' },
   },
   {
     name: 'ML ETL Pipeline @ Amazon (Ordering Org)',
@@ -45,7 +45,7 @@ export default function Projects() {
   return (
     <SimpleLayout
       title="Things I&apos;ve built"
-      intro="ML pipelines, data infrastructure, and distributed systems — a selection of projects from my work at Amazon, QuanView, Deep Data, and UW."
+      intro="ML systems, data pipelines, and distributed systems — a selection of projects from my work at Amazon, QuanView, Deep Data, and UW."
     >
       <ul
         role="list"
