@@ -3,12 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -39,7 +34,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    "I'm a Business Analyst at WeGo and an exchange student at NUS, passionate about web development and data visualization.",
+    'Software engineer based in Seattle. M.S. ECE at UW. Building ML data infrastructure and distributed systems.',
 }
 
 export default function About() {
@@ -58,36 +53,43 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Business Analyst by day, Web Developer by night
+            Software engineer who loves building systems that scale.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I&apos;m a Business Analyst at WeGo, where I specialize in Data Visualization & Business Intelligence.
-              My daily toolkit includes Python, Tableau, PowerBI, SQL, and Pandas.
+              I&apos;m Jie, a software engineer based in Seattle pursuing my M.S. in Electrical and
+              Computer Engineering at the University of Washington (GPA 3.9/4.0). My coursework spans
+              Large Language Models, Cloud Computing, Database Design, and Software Architecture.
             </p>
             <p>
-              In my free time, I&apos;m passionate about web development, building applications with Next.js and Vue.
-              I work extensively with JavaScript and TypeScript to create modern, responsive web applications.
+              My professional work sits at the intersection of ML and infrastructure. At Amazon, I built
+              CDK-based ETL pipelines that transform millions of service logs daily into structured
+              datasets for BI dashboards and model training — cutting manual log search time by 99.9%.
+              Before that, at QuanView Technology, I architected a recommendation system serving 15k
+              DAU, using a DeepFM ranking model that improved NDCG@10 by 10%.
             </p>
             <p>
-              I also have a background in Game Development, having worked with Unity and C#. This experience
-              has given me a unique perspective on user interaction and performance optimization.
+              Earlier in my career I worked as a Quantitative Developer at Deep Data Investment, building
+              high-performance C++ inference frameworks and end-to-end MLOps CI/CD pipelines. I hold a
+              B.S. in Computer Science from Xi&apos;an Jiaotong University, where I graduated as an
+              Outstanding Student.
+            </p>
+            <p>
+              My core stack includes Python, PyTorch, Spark, AWS (EC2, S3, CDK, SageMaker), Docker,
+              Kubernetes, and TypeScript.
             </p>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="mailto:liugan@wego.com" icon={MailIcon}>
-              liugan@wego.com
+            <SocialLink href="mailto:jieyao.99@outlook.com" icon={MailIcon}>
+              jieyao.99@outlook.com
             </SocialLink>
-            <SocialLink href="https://github.com/gumlau" icon={GitHubIcon} className="mt-4">
+            <SocialLink href="https://github.com/jieyao24" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="https://x.com/gumliu" icon={XIcon} className="mt-4">
-              Follow on X
-            </SocialLink>
             <SocialLink
-              href="https://www.linkedin.com/in/gan-liu-977879341/"
+              href="https://www.linkedin.com/in/jie-yao-188814262/"
               icon={LinkedInIcon}
               className="mt-4"
             >

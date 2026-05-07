@@ -5,27 +5,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
-import logoHelio from '@/images/logos/helio-stream.svg'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import wegoLogo from '@/images/logos/wego_small.png'
-import nusLogo from '@/images/logos/NUS_coat_of_arms.svg.png'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
-import { getAllArticles } from '@/lib/articles'
-import { formatDate } from '@/lib/formatDate'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 
 function MailIcon(props) {
   return (
@@ -67,6 +47,25 @@ function BriefcaseIcon(props) {
       />
       <path
         d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
+        className="stroke-zinc-400 dark:stroke-zinc-500"
+      />
+    </svg>
+  )
+}
+
+function AcademicCapIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.63 48.63 0 0 1 12 20.904a48.63 48.63 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.034 51.034 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
@@ -142,14 +141,14 @@ function Article({ article }) {
       <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <NextjsIcon />
       </div>
-      <Card.Title href={article.link.href}>
+      <Card.Title href={article.link?.href}>
         {article.name}
       </Card.Title>
       <Card.Eyebrow decorate>
-        Next.js 14 / TypeScript / Tailwind CSS
+        {article.tags}
       </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>View project</Card.Cta>
+      {article.link?.href && <Card.Cta>View project</Card.Cta>}
     </Card>
   )
 }
@@ -203,7 +202,11 @@ function Role({ role }) {
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        {role.logo ? (
+          <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        ) : (
+          <span className="text-xs font-bold text-zinc-600 dark:text-zinc-300">{role.logoText}</span>
+        )}
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -231,21 +234,25 @@ function Role({ role }) {
 function Resume() {
   let resume = [
     {
-      company: 'WeGo',
-      title: 'Business Analyst',
-      logo: wegoLogo,
-      start: '2023',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
+      company: 'Amazon',
+      title: 'Software Engineer Intern',
+      logoText: 'AMZ',
+      start: 'Jun 2025',
+      end: 'Sep 2025',
     },
     {
-      company: 'National University of Singapore',
-      title: 'Exchange Student',
-      logo: nusLogo,
-      start: '2023',
-      end: '2024',
+      company: 'QuanView Technology',
+      title: 'Machine Learning Engineer Intern',
+      logoText: 'QV',
+      start: 'Jun 2023',
+      end: 'Aug 2024',
+    },
+    {
+      company: 'Deep Data Investment',
+      title: 'Quantitative Developer',
+      logoText: 'DD',
+      start: 'May 2022',
+      end: 'May 2023',
     },
   ]
 
@@ -264,42 +271,107 @@ function Resume() {
   )
 }
 
+function Education() {
+  let education = [
+    {
+      school: 'University of Washington',
+      degree: 'M.S. Electrical & Computer Engineering · GPA 3.9/4.0',
+      logoText: 'UW',
+      start: 'Sep 2024',
+      end: { label: 'Jun 2026 (Expected)', dateTime: '2026-06' },
+    },
+    {
+      school: "Xi'an Jiaotong University",
+      degree: 'B.S. Computer Science · Outstanding Student',
+      logoText: 'XJTU',
+      start: 'Sep 2017',
+      end: 'Jul 2021',
+    },
+  ]
+
+  return (
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <AcademicCapIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">Education</span>
+      </h2>
+      <ol className="mt-6 space-y-4">
+        {education.map((entry, index) => {
+          let startLabel = typeof entry.start === 'string' ? entry.start : entry.start.label
+          let startDate = typeof entry.start === 'string' ? entry.start : entry.start.dateTime
+          let endLabel = typeof entry.end === 'string' ? entry.end : entry.end.label
+          let endDate = typeof entry.end === 'string' ? entry.end : entry.end.dateTime
+          return (
+            <li key={index} className="flex gap-4">
+              <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                <span className="text-xs font-bold text-zinc-600 dark:text-zinc-300">{entry.logoText}</span>
+              </div>
+              <dl className="flex flex-auto flex-wrap gap-x-2">
+                <dt className="sr-only">School</dt>
+                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {entry.school}
+                </dd>
+                <dt className="sr-only">Degree</dt>
+                <dd className="text-xs text-zinc-500 dark:text-zinc-400">{entry.degree}</dd>
+                <dt className="sr-only">Date</dt>
+                <dd
+                  className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+                  aria-label={`${startLabel} until ${endLabel}`}
+                >
+                  <time dateTime={startDate}>{startLabel}</time>{' '}
+                  <span aria-hidden="true">—</span>{' '}
+                  <time dateTime={endDate}>{endLabel}</time>
+                </dd>
+              </dl>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
 function Photos() {
   return null
 }
 
 export default async function Home() {
-  const featuredProject = {
-    name: 'Next.js SEO Blog Starter',
-    description: 'A modern, SEO-optimized blog starter template built with Next.js 14, TypeScript, and Tailwind CSS. Features include App Router, Server Components, built-in SEO optimization, and mobile-first responsive design.',
-    link: { href: 'https://github.com/gumlau/nextjs-seo-blog-starter' },
-  }
+  const featuredProjects = [
+    {
+      name: 'ML ETL Pipeline @ Amazon (Ordering Org)',
+      description:
+        'Built a CDK-based ETL pipeline that transforms millions of daily service logs from AWS EC2/S3 into a structured ML datalake, cutting manual log search time by 99.9% (1.5 hrs → under 5 seconds). Engineered distributed Spark pipelines processing 1.5M daily entries in 5 minutes with 100% completeness using 10+ bucketing strategies. Deployed Amazon Maestro as an IaC orchestrator for ML/ETL workflows with an auto-scaling cluster architecture across international teams.',
+      tags: 'AWS CDK · Spark · ETL · S3 · IaC',
+    },
+    {
+      name: 'DeepFM Recommendation System @ QuanView',
+      description:
+        'Architected a recommendation system for a digital creator platform with 50k+ users and 15k DAU. Built a feature extraction pipeline processing 450k daily interaction events, integrating a pre-trained Vision Transformer to generate visual embeddings and mitigate cold-start. Trained a DeepFM ranking model on 10M+ interactions that improved NDCG@10 by 10% and CTR by 1.3%. Deployed on Docker/Kubernetes handling 500 QPS at peak.',
+      tags: 'PyTorch · DeepFM · Vision Transformer · Docker · Kubernetes',
+    },
+  ]
 
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Website Designer, Founder, and Business Analyst
+            Software Engineer & ML Systems Builder
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Gan, a website designer and business analyst based in Singapore. Currently working at WeGo
-            while pursuing my exchange studies at NUS. I specialize in creating modern web applications
-            and delivering data-driven business insights.
+            I&apos;m Jie, a software engineer based in Seattle pursuing my M.S. in ECE at the University of
+            Washington. I build ML data infrastructure and distributed systems — from ETL pipelines
+            processing millions of daily events to fine-tuning large language models. Previously at
+            Amazon, QuanView Technology, and Deep Data Investment.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://github.com/gumlau"
+              href="https://github.com/jieyao24"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://x.com/gumliu"
-              aria-label="Follow on X"
-              icon={XIcon}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/gan-liu-977879341/"
+              href="https://www.linkedin.com/in/jie-yao-188814262/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />
@@ -311,15 +383,18 @@ export default async function Home() {
           <div className="flex flex-col gap-16">
             <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
               <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                <span className="ml-3">Featured Project</span>
+                <span className="ml-3">Featured Projects</span>
               </h2>
-              <div className="mt-6">
-                <Article article={featuredProject} />
+              <div className="mt-6 flex flex-col gap-16">
+                {featuredProjects.map((project) => (
+                  <Article key={project.name} article={project} />
+                ))}
               </div>
             </div>
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
+            <Education />
           </div>
         </div>
       </Container>

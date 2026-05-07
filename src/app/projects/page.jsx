@@ -1,70 +1,27 @@
-import Image from 'next/image'
-
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-
-function NextjsIcon() {
-  return (
-    <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8">
-      <mask
-        id="mask0_408_134"
-        style={{ maskType: 'alpha' }}
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="180"
-        height="180"
-      >
-        <circle cx="90" cy="90" r="90" fill="black" />
-      </mask>
-      <g mask="url(#mask0_408_134)">
-        <circle cx="90" cy="90" r="87" fill="black" stroke="white" strokeWidth="6" />
-        <path
-          d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
-          fill="url(#paint0_linear_408_134)"
-        />
-        <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_134)" />
-      </g>
-      <defs>
-        <linearGradient
-          id="paint0_linear_408_134"
-          x1="109"
-          y1="116.5"
-          x2="144.5"
-          y2="160.5"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="white" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint1_linear_408_134"
-          x1="121"
-          y1="54"
-          x2="120.799"
-          y2="106.875"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="white" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-    </svg>
-  )
-}
 
 const projects = [
   {
-    name: 'Next.js SEO Blog Starter',
+    name: 'Supervised Fine-Tuning Llama-style 7B Model with LoRA',
     description:
-      'A modern, SEO-optimized blog starter template built with Next.js 14, TypeScript, and Tailwind CSS. Features include App Router, Server Components, built-in SEO optimization, and mobile-first responsive design. This template focuses on performance, SEO best practices, and great developer experience.',
-    link: { href: 'https://github.com/gumlau/nextjs-seo-blog-starter', label: 'View on GitHub' },
-    icon: NextjsIcon,
+      'End-to-end SFT pipeline for a 7B LLM using LoRA adapters, trained on UW Hyak HPC under Slurm. Built Alpaca-style data preprocessing with anomaly filtering, prompt templating, and dataset distribution analysis. Synthesized domain-specific instruction-response pairs via GPT. Deployed to an interactive inference evaluation interface.',
+    link: { href: 'https://github.com/jieyao24', label: 'github.com/jieyao24' },
+  },
+  {
+    name: 'ML ETL Pipeline @ Amazon (Ordering Org)',
+    description:
+      'CDK-based ETL pipeline extracting and transforming massive streaming data from AWS EC2/S3 into an internal ML datalake, reducing manual log search time by 99.9% (1.5 hours → under 5 seconds). Engineered distributed Spark pipelines processing 1.5M daily entries in 5 minutes with 100% completeness using 10+ bucketing strategies.',
+  },
+  {
+    name: 'DeepFM Recommendation System @ QuanView',
+    description:
+      'Scalable recommendation system for a digital creator platform with 50k+ users and 15k DAU. Feature extraction pipeline processes 450k daily events with a Vision Transformer for cold-start mitigation. DeepFM ranking model over 10M+ interactions improved NDCG@10 by 10% and CTR by 1.3%. Deployed on Docker/Kubernetes handling 500 QPS at peak.',
+  },
+  {
+    name: 'High-Performance ML Inference Framework @ Deep Data',
+    description:
+      'Online inference framework for ML models using C++ thread pools and Python shared memory, cutting real-time latency by 44–60% under high concurrency. Integrated ClickHouse as a low-latency feature store with a Protobuf-based data pipeline. End-to-end MLOps CI/CD via Jenkins and Ansible enabling zero-downtime automatic model retraining.',
   },
 ]
 
@@ -81,14 +38,14 @@ function LinkIcon(props) {
 
 export const metadata = {
   title: 'Projects',
-  description: 'A showcase of my technical projects and contributions.',
+  description: 'ML systems, data infrastructure, and distributed computing projects.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="My Projects Portfolio"
-      intro="Showcasing my latest project - a modern, SEO-optimized blog starter template that demonstrates my expertise in Next.js, TypeScript, and web development best practices."
+      title="Things I&apos;ve built"
+      intro="ML pipelines, data infrastructure, and distributed systems — a selection of projects from my work at Amazon, QuanView, Deep Data, and UW."
     >
       <ul
         role="list"
@@ -96,17 +53,20 @@ export default function Projects() {
       >
         {projects.map((project) => (
           <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <project.icon />
-            </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              {project.link ? (
+                <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              ) : (
+                project.name
+              )}
             </h2>
             <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-              <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
-            </p>
+            {project.link && (
+              <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                <LinkIcon className="h-6 w-6 flex-none" />
+                <span className="ml-2">{project.link.label}</span>
+              </p>
+            )}
           </Card>
         ))}
       </ul>

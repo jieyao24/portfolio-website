@@ -6,11 +6,11 @@ import '@/styles/tailwind.css'
 
 export const metadata = {
   title: {
-    template: '%s - Gan Liu',
-    default: 'Gan Liu - Business Analyst & Web Developer',
+    template: '%s - Jie Yao',
+    default: 'Jie Yao - Software Engineer & ML Systems Builder',
   },
   description:
-    'Business Analyst at WeGo, specializing in Data Visualization & Business Intelligence. Web Developer building with Next.js & Vue.',
+    'Software engineer based in Seattle. M.S. ECE at UW. Building ML data infrastructure and distributed systems. Previously at Amazon, QuanView, and Deep Data Investment.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
