@@ -10,6 +10,8 @@ import logoAmazon from '@/images/logos/amazon-icon.svg'
 import logoQuanView from '@/images/logos/quan-view-icon.png'
 import logoUW from '@/images/logos/uw-logo.png'
 import logoXJTU from '@/images/logos/xjtu-logo.png'
+import logoUWRCC from '@/images/logos/uwrcc-logo.jpg'
+import logoWarriors from '@/images/logos/warriors-logo.jpeg'
 
 function MailIcon(props) {
   return (
@@ -120,6 +122,19 @@ function NextjsIcon() {
   )
 }
 
+function ExternalLinkIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6.5 3.5H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-3.5M9.5 2H13m0 0v3.5M13 2l-6 6"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 function Article({ article }) {
   return (
     <Card as="article">
@@ -130,6 +145,29 @@ function Article({ article }) {
         {article.tags}
       </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
+      {article.links && (
+        <div className="relative z-10 mt-3 space-y-1.5">
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {article.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-sm font-medium text-teal-500 hover:text-teal-600 dark:hover:text-teal-400"
+              >
+                {link.label}
+                <ExternalLinkIcon className="h-3 w-3 stroke-current" />
+              </a>
+            ))}
+          </div>
+          {article.linkHint && (
+            <p className="text-xs text-zinc-400 dark:text-zinc-500 italic">
+              {article.linkHint}
+            </p>
+          )}
+        </div>
+      )}
       {article.link?.href && <Card.Cta>View project</Card.Cta>}
     </Card>
   )
@@ -213,6 +251,57 @@ function Role({ role }) {
   )
 }
 
+function UsersIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+        className="stroke-zinc-400 dark:stroke-zinc-500"
+      />
+    </svg>
+  )
+}
+
+function Affiliation({ affiliation }) {
+  return (
+    <li className="flex gap-4">
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-white dark:ring-0">
+        {affiliation.logo ? (
+          <Image src={affiliation.logo} alt="" className="h-7 w-7" unoptimized />
+        ) : (
+          <span className="text-xs font-bold text-zinc-600 dark:text-zinc-300">{affiliation.logoText}</span>
+        )}
+      </div>
+      <div className="flex flex-auto flex-col">
+        <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{affiliation.name}</span>
+        <span className="text-xs text-zinc-500 dark:text-zinc-400">{affiliation.role}</span>
+        <p className="mt-1.5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">{affiliation.description}</p>
+        {affiliation.joinLink && (
+          <a
+            href={affiliation.joinLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-500 hover:text-teal-600 dark:hover:text-teal-400"
+          >
+            {affiliation.linkLabel ?? 'Join Us!'}
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-3 w-3 stroke-current">
+              <path d="M6.5 3.5H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-3.5M9.5 2H13m0 0v3.5M13 2l-6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        )}
+      </div>
+    </li>
+  )
+}
+
 function AcademicCapIcon(props) {
   return (
     <svg
@@ -274,6 +363,27 @@ function Resume() {
     },
   ]
 
+  let affiliations = [
+    {
+      name: 'UW Research Computing Club (UWRCC)',
+      role: 'Member · University of Washington',
+      logo: logoUWRCC,
+      description:
+        'A UW student org providing native access to Hyak and Tillicum, UW\'s on-premise HPC clusters. I use them for large-scale ML training and research computing workloads.',
+      joinLink: 'https://depts.washington.edu/uwrcc/',
+      linkLabel: 'We are recruiting, come join us!!',
+    },
+    {
+      name: 'Shanghai Warriors Football Club',
+      role: 'Wide Receiver · Alumni',
+      logo: logoWarriors,
+      description:
+        'One of China\'s premier amateur American football clubs, competing in the China American Football League (CAFL). I played as a Wide Receiver, running routes and making catches in competitive league games.',
+      joinLink: 'https://xhslink.com/m/8eirGafCo5Y',
+      linkLabel: 'Life in the huddle 👐🏻, come check us out!!',
+    },
+  ]
+
   return (
     <div className="space-y-6">
       <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
@@ -298,6 +408,17 @@ function Resume() {
           ))}
         </ol>
       </div>
+      <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+        <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+          <UsersIcon className="h-6 w-6 flex-none" />
+          <span className="ml-3">Affiliations</span>
+        </h2>
+        <ol className="mt-6 space-y-4">
+          {affiliations.map((affiliation, index) => (
+            <Affiliation key={index} affiliation={affiliation} />
+          ))}
+        </ol>
+      </div>
     </div>
   )
 }
@@ -319,6 +440,11 @@ export default async function Home() {
       description:
         'Architected a recommendation system for a digital creator platform with 50k+ users and 15k DAU. Built a feature extraction pipeline processing 450k daily interaction events, integrating a pre-trained Vision Transformer to generate visual embeddings and mitigate cold-start. Trained a DeepFM ranking model on 10M+ interactions that improved NDCG@10 by 10% and CTR by 1.3%. Deployed on Docker/Kubernetes handling 500 QPS at peak.',
       tags: 'PyTorch · DeepFM · Vision Transformer · Docker · Kubernetes',
+      links: [
+        { href: 'https://zhiyu.art/', label: 'zhiyu.art' },
+        { href: 'https://sucai.zhiyu.art/', label: 'sucai.zhiyu.art' },
+      ],
+      linkHint: 'Site opens in Chinese. Use Chrome\'s built-in Translate to switch to English.',
     },
   ]
 
@@ -326,15 +452,25 @@ export default async function Home() {
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            &lt;Developer /&gt;, Athlete 🏈
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 whitespace-nowrap">
+            &lt;AI-native engineer /&gt;, Athlete 🏈
           </h1>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {['#MLOps', '#AgentEngineering', '#SystematScale'].map((tag) => (
+              <span
+                key={tag}
+                className="text-sm font-medium text-teal-600 dark:text-teal-400"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Jie, a software engineer based in Seattle pursuing my M.S. in ECE at the University of
+            I&apos;m Jie, an AI-native developer based in Seattle pursuing my M.S. in ECE at the University of
             Washington. I build ML data workflows and distributed systems, from ETL pipelines
             processing millions of daily events to fine-tuning large language models. Previously at
             Amazon, QuanView Technology, and Deep Data Investment. Off the clock, you&apos;ll find me on
-            the football field and at the gym — I believe the same discipline that wins games drives
+            the football field and at the gym. I believe the same discipline that wins games drives
             great engineering.
           </p>
           <div className="mt-6 flex gap-6">

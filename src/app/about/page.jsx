@@ -34,7 +34,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    'Software engineer based in Seattle. M.S. ECE at UW. Building ML data infrastructure and distributed systems.',
+    'AI-native developer based in Seattle. M.S. ECE at UW. Building ML data infrastructure and distributed systems.',
 }
 
 export default function About() {
@@ -53,11 +53,11 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software engineer who loves building systems that scale.
+            AI-native developer who loves building systems that scale.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I&apos;m Jie, a software engineer based in Seattle pursuing my M.S. in Electrical and
+              I&apos;m Jie, an AI-native developer based in Seattle pursuing my M.S. in Electrical and
               Computer Engineering at the University of Washington (GPA 3.9/4.0). My coursework spans
               Large Language Models, Cloud Computing, Database Design, and Software Architecture.
             </p>
