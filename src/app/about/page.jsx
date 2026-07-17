@@ -83,8 +83,8 @@ export default function About() {
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="mailto:jieyao.99@outlook.com" icon={MailIcon}>
-              jieyao.99@outlook.com
+            <SocialLink href="mailto:jieyaokuz@gmail.com" icon={MailIcon}>
+              jieyaokuz@gmail.com
             </SocialLink>
             <SocialLink href="https://github.com/jieyao24" icon={GitHubIcon} className="mt-4">
               Follow on GitHub

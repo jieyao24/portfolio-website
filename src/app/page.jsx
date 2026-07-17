@@ -446,6 +446,15 @@ export default async function Home() {
       ],
       linkHint: 'Site opens in Chinese. Use Chrome\'s built-in Translate to switch to English.',
     },
+    {
+      name: 'Medical PII Robustness',
+      description:
+        'Adversarial robustness evaluation of PII detection under clinical domain shift, with LoRA fine-tuning as a defense. Fine-tuned a 1.5B MoE token classifier on MIMIC discharge notes, improving clinical F1 from 0.595 to 0.671 with no catastrophic forgetting. Found LoRA fine-tuning worsens robustness to character-level adversarial attacks while leaving domain-level attacks unaffected.',
+      tags: 'PyTorch · LoRA · Adversarial Robustness · PII Detection',
+      links: [
+        { href: 'https://github.com/jieyao24/medical-pii-robustness', label: 'medical-pii-robustness' },
+      ],
+    },
   ]
 
   return (
@@ -483,6 +492,11 @@ export default async function Home() {
               href="https://www.linkedin.com/in/jie-yao-188814262/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
+            />
+            <SocialLink
+              href="mailto:jieyaokuz@gmail.com"
+              aria-label="Email me"
+              icon={MailIcon}
             />
           </div>
         </div>
