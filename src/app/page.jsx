@@ -465,7 +465,7 @@ export default async function Home() {
             &lt;AI-native engineer /&gt;, Athlete 🏈
           </h1>
           <div className="mt-3 flex flex-wrap gap-2">
-            {['#MLOps', '#AgentEngineering', '#SystematScale'].map((tag) => (
+            {['#AppliedML', '#ScalingSystems', '#RLAgents'].map((tag) => (
               <span
                 key={tag}
                 className="text-sm font-medium text-teal-600 dark:text-teal-400"
@@ -475,12 +475,12 @@ export default async function Home() {
             ))}
           </div>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Jie, an AI-native developer based in Seattle pursuing my M.S. in ECE at the University of
-            Washington. I build ML data workflows and distributed systems, from ETL pipelines
-            processing millions of daily events to fine-tuning large language models. Previously at
-            Amazon, QuanView Technology, and Deep Data Investment. Off the clock, you&apos;ll find me on
-            the football field and at the gym. I believe the same discipline that wins games drives
-            great engineering.
+            I&apos;m Jie, an AI-native developer with an M.S. in Electrical and Computer Engineering
+            from the University of Washington. My interests lie in using large-scale machine
+            learning to solve real-world problems, and training self-improving agents through
+            reinforcement learning. Previously at Amazon, QuanView Technology, and Deep Data
+            Investment. Off the clock, you&apos;ll find me on the football field and at the gym. I
+            believe the same discipline that wins games drives great engineering.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
