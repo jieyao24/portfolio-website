@@ -6,13 +6,13 @@ const projects = [
     name: 'Medical PII Robustness',
     description:
       'Adversarial robustness evaluation of PII detection under clinical domain shift, with LoRA fine-tuning as a defense. Fine-tuned a 1.5B MoE token classifier on MIMIC discharge notes, improving clinical F1 from 0.595 to 0.671 with no catastrophic forgetting on general-domain data. Found that fine-tuning worsens robustness to character-level adversarial attacks (evasion +5.9 to +25.6 pp) while leaving domain-level attacks unaffected.',
-    link: { href: 'https://github.com/jieyao24/medical-pii-robustness', label: 'medical-pii-robustness' },
+    link: { href: 'https://github.com/jieyaokuz/medical-pii-robustness', label: 'medical-pii-robustness' },
   },
   {
     name: 'Supervised Fine-Tuning Llama-style 7B Model with LoRA',
     description:
       'End-to-end SFT pipeline for a 7B LLM using LoRA adapters, trained on UW Hyak HPC under Slurm. Built Alpaca-style data preprocessing with anomaly filtering, prompt templating, and dataset distribution analysis. Synthesized domain-specific instruction-response pairs via GPT. Deployed to an interactive inference evaluation interface.',
-    link: { href: 'https://github.com/jieyao24/alpaca-lora', label: 'alpaca-lora' },
+    link: { href: 'https://github.com/jieyaokuz/alpaca-lora', label: 'alpaca-lora' },
   },
   {
     name: 'ML ETL Pipeline @ Amazon (Ordering Org)',

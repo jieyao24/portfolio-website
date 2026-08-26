@@ -79,7 +79,7 @@ export default function About() {
             <p>
               Outside of work, I&apos;ve been exploring large-scale ML on my own projects. My{' '}
               <Link
-                href="https://github.com/jieyao24/alpaca-lora"
+                href="https://github.com/jieyaokuz/alpaca-lora"
                 className="text-teal-500 hover:text-teal-600 dark:hover:text-teal-400"
               >
                 alpaca-lora
@@ -88,7 +88,7 @@ export default function About() {
               with synthesized instruction-response data and an interactive evaluation interface. More
               recently, my{' '}
               <Link
-                href="https://github.com/jieyao24/medical-pii-robustness"
+                href="https://github.com/jieyaokuz/medical-pii-robustness"
                 className="text-teal-500 hover:text-teal-600 dark:hover:text-teal-400"
               >
                 Medical PII Robustness
@@ -109,7 +109,7 @@ export default function About() {
             <SocialLink href="mailto:jieyaokuz@gmail.com" icon={MailIcon}>
               jieyaokuz@gmail.com
             </SocialLink>
-            <SocialLink href="https://github.com/jieyao24" icon={GitHubIcon} className="mt-4">
+            <SocialLink href="https://github.com/jieyaokuz" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
             <SocialLink
